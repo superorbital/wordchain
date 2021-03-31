@@ -187,13 +187,16 @@ It will expect a data file of words to exist. You can either create a valid JSON
 
 * Add tests
 * Make listener use defaults passed in at the command line
-* Add swagger into Dockerfile (multi-arch)
-* Add automated docker buildx support for releases
-* create official release on github (with script ideally)
+* Add swagger into Dockerfile (w/ multi-arch support)
+* Create script for Github and Docker versioned releases
+* Create a single page Github site for tool
 * Add a small demo video and maybe even a one page tool github page at `wordchain.superorbital.io`
-* Add HTTPS and Unix socket support to listener mode.
+* Add HTTPS support to listener mode.
 * Add viper config file w/ env support
-* Allow for a range of word length (like 3-5 characters)
 * extend list (versus completely replace)
 * Blacklist words (list words you never want in your results)
 * Advanced templating of output
+
+## Acknowledgements
+
+* Chainz by GemFonts used in logo
