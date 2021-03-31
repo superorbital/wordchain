@@ -38,18 +38,6 @@ type DataFile interface {
 	Close() error
 }
 
-///func findLength(wc WordCollection, value int) [10]int {
-///	lists := [10]int{999, 999, 999, 999, 999, 999, 999, 999, 999, 999}
-///	count := 0
-///	for k, v := range wc.Lists {
-///		if v.Length == value {
-///			lists[count] = k
-///			count += 1
-///		}
-///	}
-///	return lists
-///}
-
 func GetList(file string) (DataFile, error) {
 	if file != "" {
 		f, err := os.Open(file)

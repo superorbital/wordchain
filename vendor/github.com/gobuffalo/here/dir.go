@@ -2,6 +2,7 @@ package here
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 	"path/filepath"
 )
@@ -48,7 +49,7 @@ func (h Here) Dir(p string) (Info, error) {
 	})
 
 	if err != nil {
-		return i, err
+		return i, fmt.Errorf("here.Dir: %s: %w", p, err)
 	}
 
 	return h.cache(i.ImportPath, func(p string) (Info, error) {
@@ -72,12 +73,12 @@ func fromNonGoDir(dir string) (Info, error) {
 		if nonGoDirRx.MatchString(err.Error()) {
 			return i, nil
 		}
-		return i, err
+		return i, fmt.Errorf("here.nonGoDir: %s: %w", dir, err)
 	}
 
 	if err := json.Unmarshal(b, &i.Module); err != nil {
-		return i, err
+		return i, fmt.Errorf("here.nonGoDir: %s: %w", dir, err)
 	}
 
-	return i, err
+	return i, nil
 }

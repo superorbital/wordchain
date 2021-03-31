@@ -1,0 +1,84 @@
+---
+swagger: '2.0'
+basePath: "/"
+consumes:
+- application/json
+produces:
+- application/json
+schemes:
+- http
+- https
+info:
+  description: An API for generating wordchains
+  title: WordChains
+  contact:
+    name: SuperOrbital
+    url: http://superorbital.io/
+    email: info@superorbital.io
+  version: 1.0.0
+definitions:
+  models.WordchainPrefs:
+    type: object
+    properties:
+      length:
+        description: The length of the words for each chain segment.
+        type: integer
+      divider:
+        description: The divider to use between each chain segment.
+        type: string
+      prepend:
+        description: A string to prepend the chain segment with.
+        type: string
+      postpend:
+        description: A string to postpend the chain segment with.
+        type: string
+      seed:
+        description: A string to use as a seed for deterministic results.
+        type: string
+      type:
+        description: An array of word types to return in the chain.
+        type: array
+        items:
+          type: string
+  error:
+    type: object
+    required:
+      - message
+    properties:
+      code:
+        type: integer
+        format: int64
+      message:
+        type: string
+paths:
+  "/v1/random":
+    post:
+      description: Generate a wordchain
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - wordchain
+      summary: Get a wordchain
+      operationId: get-random
+      parameters:
+      - description: Wordchain Parameters
+        name: body
+        in: body
+        required: false
+        schema:
+         $ref: "#/definitions/models.WordchainPrefs"
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: string
+        '400':
+          description: Bad Request
+          schema:
+            type: string
+        default:
+          description: generic error response
+          schema:
+            $ref: "#/definitions/error"

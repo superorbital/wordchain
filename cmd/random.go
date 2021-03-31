@@ -16,6 +16,9 @@ limitations under the License.
 package cmd
 
 import (
+	"fmt"
+	"log"
+
 	"github.com/spf13/cobra"
 	"github.com/superorbital/wordchain/words"
 )
@@ -26,7 +29,11 @@ var randomCmd = &cobra.Command{
 	Short: "Generates a random word chain",
 	Long:  `Generates a random word chain with support for customization.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		words.Random(prefs)
+		chain, err := words.Random(prefs)
+		if err != nil {
+			log.Fatal(err)
+		}
+		fmt.Println(chain)
 	},
 }
 

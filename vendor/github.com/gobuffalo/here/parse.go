@@ -57,6 +57,7 @@ func (i Info) build(p, pkg, name string) (Path, error) {
 		pt.Name = "/" + pt.Name
 	}
 	pt.Name = strings.TrimPrefix(pt.Name, i.Dir)
+
 	return pt, nil
 }
 

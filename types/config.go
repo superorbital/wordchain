@@ -17,10 +17,18 @@ package types
 
 type Preferences struct {
 	WordFile string
-	Length   int8
-	Divider  string
-	Prepend  string
-	Postpend string
-	Seed     string
-	Type     []string
+	Length   int64    `json:"length"`
+	Divider  string   `json:"divider"`
+	Prepend  string   `json:"prepend"`
+	Postpend string   `json:"postpend"`
+	Seed     string   `json:"seed"`
+	Type     []string `json:"type"`
+}
+
+type Listener struct {
+	Port int
+}
+
+type Chain struct {
+	Chain string `json:"chain"`
 }

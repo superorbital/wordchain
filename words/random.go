@@ -19,26 +19,26 @@ import (
 	"crypto/md5"
 	"encoding/binary"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"math/rand"
-	"os"
 	"strings"
 	"time"
 
 	types "github.com/superorbital/wordchain/types"
 )
 
-func Random(prefs types.Preferences) error {
+func Random(prefs types.Preferences) (string, error) {
 	f, err := GetList(prefs.WordFile)
 	if err != nil {
-		return err
+		return "", err
 	}
 	defer f.Close()
 	wc := new(WordCollection)
 	err = json.NewDecoder(f).Decode(wc)
 	if err != nil {
-		return err
+		return "", err
 	}
 	//index := findLength(*wc, int(prefs.Length))
 	chain := make([]string, len(prefs.Type))
@@ -48,8 +48,7 @@ func Random(prefs types.Preferences) error {
 		h := md5.New()
 		_, err := io.WriteString(h, prefs.Seed)
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "[ERROR] Could not generate random seed")
-			os.Exit(1)
+			return "", errors.New("[ERROR] Could not generate random seed")
 		}
 		var seed uint64 = binary.BigEndian.Uint64(h.Sum(nil))
 		rand.Seed(int64(seed))
@@ -62,8 +61,8 @@ func Random(prefs types.Preferences) error {
 			}
 		}
 		if chain[i] == "" {
-			fmt.Fprintf(os.Stderr, "[ERROR] Could not print chain. Ensure the word list has %v lists available each with a word length of %d", prefs.Type, prefs.Length)
-			os.Exit(1)
+			errString := fmt.Sprintf("[ERROR] Could not print chain. Ensure the word list has %v lists available each with a word length of %d", prefs.Type, prefs.Length)
+			return "", errors.New(errString)
 		}
 	}
 
@@ -75,7 +74,7 @@ func Random(prefs types.Preferences) error {
 	if prefs.Postpend != "" {
 		post = prefs.Divider + prefs.Postpend
 	}
-	fmt.Println(pre + strings.Join(chain[:], prefs.Divider) + post)
+	final := pre + strings.Join(chain[:], prefs.Divider) + post
 
-	return nil
+	return final, nil
 }

@@ -6,10 +6,14 @@
 
 ## Development
 
-```go
-go get github.com/markbates/pkger/cmd/pkger
-pkger -include /data/words.json
-go build .
+```shell
+$ go get github.com/markbates/pkger/cmd/pkger
+$ pkger -include /data/words.json
+# Install go-swagger
+# https://goswagger.io/install.html
+$ swagger generate server -f ./swagger.yaml --exclude-main
+$ go mod vendor
+$ go build .
 ```
 
 ## Releasing
@@ -17,17 +21,22 @@ go build .
 * Update the Version in `cmd/root.go`
 
 ```shell
-go get github.com/mitchellh/gox
-gox -osarch='!darwin/386' -output './builds/wordchain_{{.OS}}_{{.Arch}}'
+$ go get github.com/mitchellh/gox
+$ gox -osarch='!darwin/386' -output './builds/wordchain_{{.OS}}_{{.Arch}}'
 ```
 
 * Create a release in Github with the resulting binaries.
 
 ### Docker Release
 
+* See: https://www.docker.com/blog/multi-arch-build-and-images-the-simple-way/
+
 ```shell
-$ docker build -t superorbital/wordchain:${VERISON} .
-$ docker push superorbital/wordchain:${VERISON}
+$ swagger generate server -f ./swagger.yaml --exclude-main
+$ docker buildx build \
+    --push \
+    --platform linux/arm/v7,linux/arm64/v8,linux/amd64 \
+    --tag superorbital/wordchain:${VERISON} .
 ```
 
 ## Usage
@@ -91,10 +100,29 @@ hello+odd+pad+goodbye
 $ ./wordchain export > internal-word-list.json
 ```
 
+### Microservice
+
+```shell
+$ wordchain listen --port 8080
+2021/03/30 11:32:02 Serving word chains at http://[::]:8080
+
+$ curl -X POST -d '{}' -H 'Content-Type: application/json' http://127.0.0.1:8080/v1/random
+"{\"chain\":\"quack-bayou\"}"
+
+$ curl -X POST -d '{"length": 3}' -H 'Content-Type: application/json' http://127.0.0.1:8080/v1/random
+"{\"chain\":\"odd-toy\"}"
+
+$ curl -X POST -d '{"divider": "_", "length": 3, "prepend": "hello", "postpend": "adios", "seed": "deterministic" }' -H 'Content-Type: application/json' http://127.0.0.1:8080/v1/random
+"{\"chain\":\"hello_bad_ace_adios\"}"
+```
+
 ### Docker
 
 ```shell
 $ docker run superorbital/wordchain:latest
+2021/03/30 20:35:07 Serving word chains at http://[::]:8080
+
+$ docker run superorbital/wordchain:latest random
 alpha-drink
 
 $ docker run superorbital/wordchain:latest random -l 3
@@ -155,8 +183,15 @@ It will expect a data file of words to exist. You can either create a valid JSON
 }
 ```
 
-## Ideas
+## TODO & Ideas
 
+* Add tests
+* Make listener use defaults passed in at the command line
+* Add swagger into Dockerfile (multi-arch)
+* Add automated docker buildx support for releases
+* create official release on github (with script ideally)
+* Add a small demo video and maybe even a one page tool github page at `wordchain.superorbital.io`
+* Add HTTPS and Unix socket support to listener mode.
 * Add viper config file w/ env support
 * Allow for a range of word length (like 3-5 characters)
 * extend list (versus completely replace)

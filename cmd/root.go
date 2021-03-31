@@ -55,7 +55,7 @@ func init() {
 	//	rootCmd.PersistentFlags().StringVarP(&cfgFile, "config", "c", "", "config file (default is $HOME/.wordchain.yaml)")
 	rootCmd.PersistentFlags().StringVarP(&prefs.Divider, "divider", "d", "-", "The divider to use between words")
 	rootCmd.PersistentFlags().StringVarP(&prefs.WordFile, "json", "j", "", "word list json file")
-	rootCmd.PersistentFlags().Int8VarP(&prefs.Length, "length", "l", 5, "The length of words to use")
+	rootCmd.PersistentFlags().Int64VarP(&prefs.Length, "length", "l", 5, "The length of words to use")
 	rootCmd.PersistentFlags().StringVarP(&prefs.Postpend, "postpend", "o", "", "string to postpend to the output")
 	rootCmd.PersistentFlags().StringVarP(&prefs.Prepend, "prepend", "r", "", "string to prepend to the output")
 	rootCmd.PersistentFlags().StringSliceVarP(&prefs.Type, "type", "t", []string{"adjective", "noun"}, "Comma seperated list of word types")
