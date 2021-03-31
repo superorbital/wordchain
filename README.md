@@ -1,5 +1,7 @@
 # Word Chain
 
+![wordchain](https://user-images.githubusercontent.com/129629/113178043-074d5d80-9203-11eb-92e0-9faa9a6a9748.png)
+
 ## Overview
 
 `wordchain` is an application that can generate readable chains of customizable words for naming things like containers, clusters, and other objects.
