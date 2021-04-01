@@ -191,6 +191,7 @@ It will expect a data file of words to exist. You can either create a valid JSON
 * Make listener use defaults passed in at the command line
 * Add swagger into Dockerfile (w/ multi-arch support)
 * Create script for Github and Docker versioned releases
+* Add a homebrew/linuxbrew tap
 * Create a single page Github site for tool
 * Add a small demo video and maybe even a one page tool github page at `wordchain.superorbital.io`
 * Add HTTPS support to listener mode.
