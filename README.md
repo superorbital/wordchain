@@ -75,10 +75,10 @@ mangy-berry
 $ wordchain random -s "my-unique-git-branch-name"
 mangy-berry
 
-./wordchain random -s "someone-elses-unique-git-branch-name"
+$ wordchain random -s "someone-elses-unique-git-branch-name"
 minty-sleet
 
-./wordchain random -s "someone-elses-unique-git-branch-name"
+$ wordchain random -s "someone-elses-unique-git-branch-name"
 minty-sleet
 ```
 
@@ -99,7 +99,7 @@ hello+odd+pad+goodbye
 * Get a copy of the internal word list in the valid json format
 
 ```shell
-$ ./wordchain export > internal-word-list.json
+$ wordchain export > internal-word-list.json
 ```
 
 ### Microservice
@@ -192,6 +192,8 @@ It will expect a data file of words to exist. You can either create a valid JSON
 * Add swagger into Dockerfile (w/ multi-arch support)
 * Create script for Github and Docker versioned releases
 * Add a homebrew/linuxbrew tap
+* Add basic Kubernetes Deployment Manifest
+* Add basic /health endpoint
 * Create a single page Github site for tool
 * Add a small demo video and maybe even a one page tool github page at `wordchain.superorbital.io`
 * Add HTTPS support to listener mode.
