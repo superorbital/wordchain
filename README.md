@@ -133,7 +133,7 @@ cut-oak
 
 ### Library
 
-* In you project you can do something like this to use this as a library:
+* In your project you can do something like this to use this as a library:
 
 ```go
 package main
