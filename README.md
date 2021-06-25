@@ -1,6 +1,6 @@
 # Word Chain
 
-![wordchain](https://user-images.githubusercontent.com/129629/113178043-074d5d80-9203-11eb-92e0-9faa9a6a9748.png)
+![wordchain](./images/wordchain-black_on_white_cropped.png)
 
 ## Overview
 
