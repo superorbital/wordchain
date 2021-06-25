@@ -204,4 +204,4 @@ It will expect a data file of words to exist. You can either create a valid JSON
 
 ## Acknowledgements
 
-* Chainz by GemFonts used in logo
+* Original `wordchain` logo by @fredyates
