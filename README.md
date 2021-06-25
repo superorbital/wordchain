@@ -204,4 +204,4 @@ It will expect a data file of words to exist. You can either create a valid JSON
 
 ## Acknowledgements
 
-* Original `wordchain` logo by @fredyates
+* Original `wordchain` logo by [@fredyates](https://github.com/fredyates)
