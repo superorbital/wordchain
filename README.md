@@ -23,8 +23,9 @@ $ go build .
 * Update the Version in `cmd/root.go`
 
 ```shell
-$ go get github.com/mitchellh/gox
-$ gox -osarch='!darwin/386' -output './builds/wordchain_{{.OS}}_{{.Arch}}'
+$ swagger generate server -f ./swagger.yaml --exclude-main
+$ go install github.com/mitchellh/gox@latest
+$ gox -osarch='darwin/amd64 darwin/arm64 freebsd/386 freebsd/amd64 freebsd/arm linux/386 linux/amd64 linux/arm linux/arm64 linux/mips linux/mips64 linux/mips64le linux/mipsle linux/s390x netbsd/386 netbsd/amd64 netbsd/arm openbsd/386 openbsd/amd64 windows/386 windows/amd64' -output './builds/wordchain_{{.OS}}_{{.Arch}}'
 ```
 
 * Create a release in Github with the resulting binaries.
