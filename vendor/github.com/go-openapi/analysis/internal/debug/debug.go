@@ -1,5 +1,3 @@
-// +build !go1.8
-
 // Copyright 2015 go-swagger maintainers
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,16 +12,30 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package internal
+package debug
 
-import "net/url"
+import (
+	"fmt"
+	"log"
+	"os"
+	"path/filepath"
+	"runtime"
+)
 
-// PathUnescape provides url.PathUnescape(), with seamless
-// go version support for pre-go1.8
-//
-// TODO: this function is currently defined in go-openapi/swag,
-// but unexported. We might chose to export it, or simple phase
-// out pre-go1.8 support.
-func PathUnescape(path string) (string, error) {
-	return url.QueryUnescape(path)
+var (
+	output = os.Stdout
+)
+
+// GetLogger provides a prefix debug logger
+func GetLogger(prefix string, debug bool) func(string, ...interface{}) {
+	if debug {
+		logger := log.New(output, fmt.Sprintf("%s:", prefix), log.LstdFlags)
+
+		return func(msg string, args ...interface{}) {
+			_, file1, pos1, _ := runtime.Caller(1)
+			logger.Printf("%s:%d: %s", filepath.Base(file1), pos1, fmt.Sprintf(msg, args...))
+		}
+	}
+
+	return func(msg string, args ...interface{}) {}
 }

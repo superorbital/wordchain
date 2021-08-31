@@ -20,7 +20,10 @@ $ go build .
 
 ## Releasing
 
-* Update the Version in `cmd/root.go`
+* Update the CLI version in `cmd/root.go`
+* If the API changed:
+  * Update version in `swagger.yaml`
+* Update the `CHANGELOG`
 
 ```shell
 $ swagger generate server -f ./swagger.yaml --exclude-main

@@ -26,7 +26,7 @@ var prefs types.Preferences
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Version: "v1.0.0",
+	Version: "v1.0.1",
 	Use:     "wordchain",
 	Short:   "Generates a word chain",
 	Long: `wordchain is an application that can generate a readable chain
