@@ -14,4 +14,4 @@ currently being supported with security updates.
 
 Please practice responsible disclosure and give us time to fix any security issues before they are publicly disclosed.
 
-You can [mailto:hello@superorbital.io&subject=superorbital/wordchain repo security submission&body=Security Vulnerability Disclosure:  ](inform us of any issues by sending a private email). You should recieve an acknowledgement and initial response within a week.
+You can [inform us of any issues by sending a private email](mailto:hello@superorbital.io&subject=superorbital/wordchain repo security submission&body=Security Vulnerability Disclosure:  ). You should recieve an acknowledgement and initial response within a week.
