@@ -6,6 +6,8 @@
 
 `wordchain` is an application that can generate readable chains of customizable words for naming things like containers, clusters, and other objects.
 
+* [Introductory Blog Post](https://superorbital.io/journal/introducing-wordchain/)
+
 ## Development
 
 ```shell
