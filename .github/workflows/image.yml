@@ -42,8 +42,8 @@ jobs:
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           push: true
           tags: superorbital/wordchain:latest
+      - uses: sigstore/cosign-installer@main
       - name: Cosign signature
-        uses: sigstore/cosign-installer@main
         run: COSIGN_EXPERIMENTAL=1 cosign sign -a git_sha=$GITHUB_SHA docker.io/superorbital/wordchain:latest
       -
         name: Image digest
