@@ -7,6 +7,11 @@ on:
 
 jobs:
   buildx:
+    # https://docs.github.com/en/actions/reference/authentication-in-a-workflow
+    permissions:
+      id-token: write
+      packages: write
+      contents: read 
     runs-on: ubuntu-latest
     steps:
       -
@@ -37,6 +42,9 @@ jobs:
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           push: true
           tags: superorbital/wordchain:latest
+      - name: Cosign signature
+        uses: sigstore/cosign-installer@main
+        run: COSIGN_EXPERIMENTAL=1 cosign sign -a git_sha=$GITHUB_SHA docker.io/superorbital/wordchain:latest
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
