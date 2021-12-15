@@ -44,7 +44,7 @@ jobs:
           tags: superorbital/wordchain:latest
       - uses: sigstore/cosign-installer@main
       - name: Cosign signature
-        run: COSIGN_EXPERIMENTAL=1 cosign sign -a git_sha=$GITHUB_SHA docker.io/superorbital/wordchain:latest
+        run: COSIGN_EXPERIMENTAL=1 cosign sign --recursive -a git_sha=$GITHUB_SHA docker.io/superorbital/wordchain:latest
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
