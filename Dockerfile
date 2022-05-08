@@ -1,5 +1,5 @@
 ARG ARCH=
-FROM ${ARCH}golang:1.16-alpine3.13 AS build
+FROM ${ARCH}golang:1.18-alpine3.15 AS build
 
 RUN apk --no-cache add \
     bash \
@@ -12,11 +12,11 @@ ENV CGO_ENABLED=0
 COPY . /build
 WORKDIR /build
 
-RUN go get github.com/markbates/pkger/cmd/pkger && \
+RUN go install github.com/markbates/pkger/cmd/pkger@latest && \
     pkger -include /data/words.json && \
     go build .
 
-FROM ${ARCH}alpine:3.13 AS deploy
+FROM ${ARCH}alpine:3.15 AS deploy
 
 WORKDIR /
 COPY --from=build /build/wordchain /
