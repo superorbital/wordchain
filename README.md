@@ -11,7 +11,7 @@
 ## Development
 
 ```shell
-$ go get github.com/markbates/pkger/cmd/pkger
+$ go install github.com/markbates/pkger/cmd/pkger@latest
 $ pkger -include /data/words.json
 # Install go-swagger
 # https://goswagger.io/install.html
