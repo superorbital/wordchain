@@ -98,9 +98,8 @@ go.mongodb.org/mongo-driver/x/bsonx/bsoncore
 ## explicit
 golang.org/x/net/idna
 golang.org/x/net/netutil
-# golang.org/x/sys v0.0.0-20210831042530-f4d43177bf5e
+# golang.org/x/sys v0.1.0
 ## explicit
-golang.org/x/sys/internal/unsafeheader
 golang.org/x/sys/unix
 # golang.org/x/text v0.3.7
 ## explicit
