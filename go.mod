@@ -20,7 +20,5 @@ require (
 	github.com/markbates/pkger v0.17.1
 	github.com/spf13/cobra v1.2.1
 	go.mongodb.org/mongo-driver v1.7.1 // indirect
-	golang.org/x/net v0.0.0-20210825183410-e898025ed96a
-	golang.org/x/sys v0.0.0-20210831042530-f4d43177bf5e // indirect
-	golang.org/x/text v0.3.7 // indirect
+	golang.org/x/net v0.7.0
 )
